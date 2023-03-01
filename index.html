@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let MathFrameWork = {};
+    MathFrameWork.a = prompt("Введите первое число");
+    MathFrameWork.b = prompt("Введите второе число");
+    let operator = prompt("Введите оператор");
+
+    MathFrameWork.Work = function (operator) {
+        let a = Number(MathFrameWork.a);
+        let b = Number(MathFrameWork.b);
+        let result = 0;
+        if (typeof a == 'number' && typeof b == 'number') {
+            switch (operator) {
+                case "+":
+                    result = a + b;
+                    if (isNaN(result)) {
+                        alert("Переменная NaN");
+                    } else {
+                        alert(`${a} + ${b} = ${result}`);
+                    }
+                    break;
+                case "-":
+                    result = a - b;
+                    if (isNaN(result)) {
+                        alert("Переменная NaN");
+                    } else {
+                        alert(`${a} - ${b} = ${result}`);
+                    }
+                    break;
+                case "*":
+                    result = a * b;
+                    if (isNaN(result)) {
+                        alert("Переменная NaN");
+                    } else {
+                        alert(`${a} * ${b} = ${result}`);
+                    }
+                    break;
+                case "/":
+                    if (b !== 0) {
+                        result = a / b;
+                        if (isNaN(result)) {
+                            alert("Переменная NaN");
+                        } else {
+                            alert(`${a} / ${b} = ${result}`);
+                        }
+
+                    } else {
+                        alert("На ноль делить нельзя");
+                    }
+                    break;
+                default:
+                    alert("Вы ввели не правильный оператор");
+            }
+            MathFrameWork.Result = result;
+        }
+        else if (a instanceof Array && b instanceof Array) {
+            let tempResult = [];
+            let length = 0;
+            if (a.length >= b.length) {
+                length = a.length
+            } else {
+                length = b.length
+            }
+            for (let i = 0; i < length; i++) {
+                let operand1 = Number(a[i]);
+                let operand2 = Number(b[i]);
+                if (isNaN(operand1)) {
+                    operand1 = 0;
+                } else if (isNaN(operand2)) {
+                    operand2 = 0;
+                }
+                switch (operator) {
+                    case "+":
+                        tempResult[i] = operand1 + operand2;
+                        break;
+                    case "-":
+                        tempResult[i] = operand1 - operand2;
+                        break;
+                    case "*":
+                        tempResult[i] = operand1 * operand2;
+                        break;
+                    case "/":
+                        if (operand2 !== 0) {
+                            tempResult[i] = operand1 / operand2;
+                        } else {
+                            alert("На ноль делить нельзя");
+                        }
+                        break;
+                    default:
+                        alert("Вы ввели не правильный оператор");
+                }
+
+            }
+            console.log(tempResult);
+            return tempResult;
+
+        }
+        else if (a instanceof Object && b instanceof Object) {
+            let tempResObj = {};
+            switch (operator) {
+                case "+":
+                    tempResObj.resultA = a['a'] + b['a'];
+                    tempResObj.resultB = a['b'] + b['b'];
+                    break;
+                case "-":
+                    tempResObj.resultA = a['a'] - b['a'];
+                    tempResObj.resultB = a['b'] - b['b'];
+                    break;
+                case "*":
+                    tempResObj.resultA = a['a'] * b['a'];
+                    tempResObj.resultB = a['b'] * b['b'];
+                    break;
+                case "/":
+                    if (b['a'] !== 0 || b['b'] !== 0) {
+                        tempResObj.resultA = a['a'] / b['a'];
+                        tempResObj.resultB = a['b'] / b['b'];
+                    } else {
+                        alert("На ноль делить нельзя");
+                    }
+                    break;
+                default:
+                    alert("Вы ввели не правильный оператор");
+            }
+            tempResObj.result = String(tempResObj.resultA + tempResObj.resultB);
+            console.log(tempResObj)
+            alert(tempResObj.result);
+            return tempResObj;
+        }
+        // console.log(MathFrameWork);
+    }
+    MathFrameWork.Work(operator);
+    console.log(MathFrameWork);
+</script>
+</body>
+</html>
